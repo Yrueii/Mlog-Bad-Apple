@@ -1,6 +1,3 @@
-var FileReader = java.io.FileReader;
-var BufferedReader = java.io.BufferedReader;
-
 var index = 1;
 
 function test123(){
