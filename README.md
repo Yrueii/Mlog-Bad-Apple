@@ -1,6 +1,9 @@
 Bleeding edge Mindustry version is needed for this to work properly.  
 V8 might work but i haven't tested it yet.  
 
+For schematic file, you can find them in the [Releases](https://github.com/Yrueii/Mlog-Bad-Apple/releases/tag/v1.0).
+Otherwise if you want to built it yourself please read below.
+
 Almost everything is hardcoded.  
 You would need to input your own bad apple video for the python file.  
 video input will be taken from ./input/untitled.mp4  
