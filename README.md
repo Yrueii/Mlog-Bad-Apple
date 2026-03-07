@@ -1,3 +1,6 @@
+Bleeding edge Mindustry version is needed for this to work properly.  
+V8 might work but i haven't tested it yet.  
+
 Almost everything is hardcoded.  
 You would need to input your own bad apple video for the python file.  
 video input will be taken from ./input/untitled.mp4  
@@ -14,7 +17,8 @@ What mlog files you use should match the `encoding_version` in the python file.
 Though version 2 is experimental, and might not work well.  
 Version 3 is what you see on the release v1.0  
 These code assumes the world processor have access to unconstrained IPT rate, hence the multiple thousands value in `setrate`  
-This can be done with a mod, or the console,  
+This can be done with a mod, or the console.  
+Though with increasing the IPT, you would also need to increase your game FPS to around ~500fps for optimal experience. This is needed because display buffer only allows 1024 draw operations per game frame
 
 The rhino.js is for the console in Mindustry to take the strings and put them in your (already built) micro processors.  
 Once again most of the variables are hardcoded, the code fills from left to right, top to bottom.  
