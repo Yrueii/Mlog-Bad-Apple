@@ -1,0 +1,48 @@
+setrate 60000
+set i 0
+getlink mem gi
+op add gi gi 1
+read data mem "a"
+loop:
+op add i1 i 1
+# op add i2 i 2
+# op add i3 i 3
+read c0 data i
+read c1 data i1
+# read c2 data i2
+# read c3 data i3
+op sub x c0 93
+op sub c1` c1 93
+# op sub x2 c2 93
+# op sub c3` c3 93
+
+op mod col c1` 2
+op mul col col 255
+op idiv y c1` 2
+# op idiv y2 c3` 2
+
+
+# jump calw equal y y2
+# op sub w 512 x
+# jump calw2 always
+# calw:
+# op sub w x2 x
+# calw2:
+
+draw color col col col 255
+draw rect x y 510 1
+drawflush display1
+op add i i 2
+
+jump wait1 equal c0 35
+jump 0 strictEqual c0 null
+jump loop always
+wait1:
+    op sub elapsed @time time
+    jump wait1 lessThan elapsed 33.33
+    draw image 250 186 display1 500 0
+    # 250 186
+    drawflush display2
+    set time @time
+    jump loop always
+

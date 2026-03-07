@@ -1,8 +1,7 @@
 import cv2
 
-video_path = "mindy/bad_apple/input/untitled.mp4"
-# video_path = "mindy/bad apple 176 176 24fps double time.mp4"
-output_file = "mindy/bad_apple/output/output.txt"
+video_path = "./input/untitled.mp4"
+output_file = "./output/output.txt"
 file_len = 0
 write = False
 exit = False
@@ -124,7 +123,7 @@ while True:
     file_len = 0
     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_index)
     first_seperator = False
-    with open(f"mindy/bad_apple/output/{output_filename}{output_file_index}.txt", "w+", encoding="utf-8") as out:
+    with open(f"./output/{output_filename}{output_file_index}.txt", "w+", encoding="utf-8") as out:
         out.write('"')
         while True:
             ret, frame = cap.read()

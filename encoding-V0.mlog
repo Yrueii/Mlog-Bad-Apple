@@ -1,0 +1,67 @@
+setrate 10000
+getlink memory mi
+read data memory "a"
+
+#################
+op add x0 i 0
+op add x1 i 1
+read x` data x0
+read x`` data x1
+op sub x` x` 35
+op sub x`` x`` 35
+op mul x` x` 92
+op add x x` x``
+
+op add y0 i 2
+op add y1 i 3
+read y` data y0
+read y`` data y1
+op sub y` y` 35
+op sub y`` y`` 35
+op mul y` y` 92
+op add y y` y``
+###############
+
+################
+op add x0 i 5
+op add x1 i 6
+read x` data x0
+read x`` data x1
+op sub x` x` 35
+op sub x`` x`` 35
+op mul x` x` 92
+op add xs x` x``
+
+op add y0 i 7
+op add y1 i 8
+read y` data y0
+read y`` data y1
+op sub y` y` 35
+op sub y`` y`` 35
+op mul y` y` 92
+op add ys y` y``
+############
+
+op add b0 i 4
+read b1 data b0
+op sub b2 b1 32
+op mul b b2 255
+
+op add i i 5
+jump 0 notEqual y ys
+jump reset strictEqual b1 null
+jump continue always
+    reset:
+    op add mi mi 1
+    set i 0
+    jump 0 always
+continue:
+draw color b b b 255
+draw line x y xs ys
+drawflush display1
+# draw clear 255 255 255
+
+end
+stop
+stop
+
