@@ -24,7 +24,8 @@ Though version 2 is experimental, and might not work well.
 Version 3 is what you see on the release v1.0  
 These code assumes the world processor have access to unconstrained IPT rate, hence the multiple thousands value in `setrate`  
 This can be done with a mod, or the console.  
-Though with increasing the IPT, you would also need to increase your game FPS to around ~500fps for optimal experience. This is needed because display buffer only allows 1024 draw operations per game frame
+Though with increasing the IPT, you would also need to increase your game FPS to around ~500fps for optimal experience. This is needed because display buffer only allows 1024 draw operations per game frame.  
+on release v2.0 and v2.1, each processor now is only at 1000 ipt, though high game fps is still needed for it to be smooth, around ~250 fps, the higher your game fps is generally the better it will be.  
 
 on v31 there's a clock code, this is for a seperate world processor than the workers, and acts as a global clock for the workers, this world processor need to be linked to all workers, inversely all workers need to link the clock processor.  
 
