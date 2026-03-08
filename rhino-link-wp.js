@@ -1,29 +1,40 @@
 var index = 1;
-
 function test123(){
-    var wpx = 114;
-    var wpy = 89;
-    var inix = 115 - 1;
-    var iniy = 90;
-    var ylimit = 100;
-    var x = inix;
-    var y = iniy;
+    var inix = 46 - 1;
+    var iniy = 106;
+    var xlimit = 77;
+    var ylimit = 137;
+    var x1 = inix;
+    var y1 = iniy;
     while (true) {
-        x += 1;
-        if (x > 130){
-            x = inix + 1;
-            y += 1;
+        var x = inix;
+        var y = iniy;
+        x1 += 1;
+        if (x1 > xlimit){
+            x1 = inix + 1;
+            y1 += 1;
         };
-        print("index" +index);
-        print(x);
-        print("  " +y);
-        Vars.world.tile(wpx, wpy).build.links.add(new LogicBlock.LogicLink(x, y, "processor" + index, true));
+        var wp = Vars.world.tile(x1, y1);
+        if (wp.block() == 'world-processor'){
+            print(wp);
+            var index = 1;
+            while (true) {
+                x += 1;
+                if (x > xlimit){
+                    x = inix + 1;
+                    y += 1;
+                };
+                var tile = Vars.world.tile(x, y);
+                if (tile.block() == 'micro-processor'){
+                    wp.build.links.add(new LogicBlock.LogicLink(x, y, "processor" + index, true));
+                    index += 1;
+                };
 
-        if (y > ylimit){
-            break;
+                if (y > ylimit){
+                    break;
+                };
+            };
         };
-    
-        index += 1;
     };
 };
 

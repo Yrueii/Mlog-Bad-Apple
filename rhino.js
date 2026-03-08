@@ -4,36 +4,40 @@ var BufferedReader = java.io.BufferedReader;
 var index = 1;
 
 function test123(){
-    var inix = 115 - 1;
-    var iniy = 90;
-    var x = inix;
+    var inix = 46 - 1;
+    var iniy = 106;
+    var xlimit = 77;
+    var x = inix + 1;
     var y = iniy;
+    var skip = 1;
+
     while (true) {
-        var path = "./output/boutput" + index + ".txt";
-        var reader = new BufferedReader(new FileReader(path));
-        var line;
-        x += 1;
-        if (x > 130){
-            x = inix + 1;
-            y += 1;
+        var path = "/home/Documents/mindy/bad_apple/output/boutput" + index + ".txt";
+        var reader = new java.io.BufferedReader(
+            new java.io.InputStreamReader(
+                new java.io.FileInputStream(path), "UTF-8"
+            )
+        );
+        while (true) {
+            x += 1;
+            if (x > xlimit){
+                x = inix + 1;
+                y += 1;
+            };
+            var tile = Vars.world.tile(x, y);
+            if (tile.block() == 'micro-processor'){
+                if (skip <= 36){
+                    skip += 1;
+                } else {
+                    tile.build.code ="set a " + reader.readLine();
+                    break;
+                };
+            };
         };
-        print("index" +index);
-        print(x);
-        print("  " +y);
-        var code = "Vars.world.tile("+x+", "+y+").build.code=` set a \\";
-        while ((line = reader.readLine()) != null) {
-            line = line.replace(/\\/g, "\\\\");
-            line = line.replace(/`/g, "\\`");
-            code += line;
-        };
-        code = code.substring(0, code.length - 1);
-        code += "\\\"`";
-
-        eval(code);
-
         reader.close();
-    
         index += 1;
+        print(index);
+        print(tile);
     };
 };
 

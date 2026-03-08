@@ -1,0 +1,76 @@
+setrate 1000
+read indextable processor1 "proc1"
+
+nextblock:
+op add gi gi 1
+getlink mem gi
+read data mem "a"
+set previndex 0
+jump nextblock equal data false
+# nextoffset:
+
+wait1:
+read clockoffsetindex processor768 "offsetindex"
+jump wait1 lessThan clockoffsetindex 0
+jump skip equal done false
+    read myindex indextable clockoffsetindex
+    op sub myindex myindex 93
+    jump wait1 equal previndex myindex
+    set done false
+skip:
+
+    read myindex indextable clockoffsetindex
+op add clockoffsetindex` clockoffsetindex 1
+    read myindex` indextable clockoffsetindex`
+
+op sub myindex myindex 93
+op sub myindex` myindex` 93
+
+
+set i myindex
+jump nextblock lessThan myindex previndex
+jump draw lessThan i myindex`
+# jump draw1 notEqual myindex previndex
+jump wait1 greaterThan i myindex`
+
+# draw1:
+draw:
+set previndex myindex
+loop:
+op add i1 i 1
+op add i2 i 2
+op add i3 i 3
+read c0 data i
+read c1 data i1
+read c2 data i2
+read c3 data i3
+op sub x c0 93
+op sub c1` c1 93
+op sub x2 c2 93
+op sub c3` c3 93
+
+op mod col c1` 2
+op mul col col 255
+op idiv y c1` 2
+op idiv y2 c3` 2
+
+
+jump calw equal y y2
+op sub w 512 x
+jump calw2 always
+calw:
+op sub w x2 x
+calw2:
+
+draw color col col col 255
+draw rect x y w 1
+drawflush display1
+op add i i 2
+
+jump loop lessThan i myindex` 
+set done true
+jump wait1 always
+# jump 0 strictEqual c0 null
+
+    # jump nextoffset always
+

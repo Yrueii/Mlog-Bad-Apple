@@ -1,0 +1,35 @@
+setrate 1000
+wait1:
+    set offsetindex -1
+    getlink g i
+    skip:
+    op add i i 1
+    write 0 g "@counter"
+    write 1 g "gi"
+    write false g "i"
+    write false g "skip"
+    write false g "offsetindex"
+    write false g "mem"
+    write false g "previndex"
+    op mod i i @links
+    sensor sw switch1 @enabled
+    jump wait1 equal sw 0
+    set offsetindex 0
+    set time @time
+    loop:
+        op sub elapsed @time time
+        sensor sw switch1 @enabled
+        jump wait1 equal sw 0
+        jump loop lessThan elapsed 33.33
+        draw image 250 186 display1 500 0
+        # 250 186
+        drawflush display2
+        wait 0
+        op add offsetindex offsetindex 2
+        set time @time
+        
+        jump loop always
+
+
+
+
